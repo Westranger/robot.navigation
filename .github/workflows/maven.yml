@@ -25,6 +25,8 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install test jacoco:prepare-agent jacoco:report pmd:check spotbugs:check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifact to GitHub Packages
         run: mvn -B -Pgithub deploy -DskipTests
